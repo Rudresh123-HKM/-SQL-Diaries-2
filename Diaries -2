@@ -1,0 +1,18 @@
+Given three tables:
+
+Students
+Subjects
+Examinations
+
+The task was to find the number of times each student attended each subject exam, including cases where a student never attended a particular exam (count = 0).
+
+Solution:- 
+
+select st.student_id, st.student_name, su.subject_name, count(e.student_id) as attended_exams
+from Students st
+cross join Subjects su 
+left join Examinations e
+on st.student_id = e.student_id
+and su.subject_name = e.subject_name
+group by st.student_id, st.student_name, su.subject_name
+order by st.student_id, st.student_name;
